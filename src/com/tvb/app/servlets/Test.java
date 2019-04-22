@@ -20,7 +20,7 @@ public class Test extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
             PrintWriter writer = res.getWriter();
-            writer.println("WHY ME");
+            writer.println("I wrote this");
 
             List<String> l = new ArrayList<>();
             l.add("t1");

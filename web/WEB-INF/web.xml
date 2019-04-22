@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>Test</servlet-name>
-        <servlet-class>com.tvb.app.Test</servlet-class>
+        <servlet-class>com.tvb.app.servlets.Test</servlet-class>
     </servlet>
 
     <servlet-mapping>

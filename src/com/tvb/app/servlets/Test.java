@@ -1,5 +1,6 @@
-package com.tvb.app;
+package com.tvb.app.servlets;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,10 +28,12 @@ public class Test extends HttpServlet {
         l.add("t3");
         l.add("t4");
 
+
+
         state++;
         System.out.println("State: " + state);
 
         req.setAttribute("test", l);
-        req.getRequestDispatcher("/index.jsp").forward(req, res);
+        req.getRequestDispatcher("index.jsp").include(req, res);
     }
 }

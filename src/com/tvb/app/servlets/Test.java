@@ -19,21 +19,21 @@ public class Test extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-            PrintWriter writer = res.getWriter();
-            writer.println("I wrote this");
+        PrintWriter writer = res.getWriter();
+        writer.println("I wrote this");
 
-            List<String> l = new ArrayList<>();
-            l.add("t1");
-            l.add("t2");
-            l.add("t3");
-            l.add("t4");
+        List<String> l = new ArrayList<>();
+        l.add("t1");
+        l.add("t2");
+        l.add("t3");
+        l.add("t4");
 
 
 
-            state++;
+        state++;
         System.out.println("State: " + state);
 
         req.setAttribute("test", l);
-        req.getRequestDispatcher("index.jsp").forward(req, res);
+        req.getRequestDispatcher("index.jsp").include(req, res);
     }
 }

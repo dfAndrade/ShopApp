@@ -1,10 +1,11 @@
-<%@ page import="com.tvb.app.servlets.Test" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: diogo
   Date: 17/04/2019
   Time: 01:23
 --%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.tvb.app.servlets.Test" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

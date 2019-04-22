@@ -28,8 +28,6 @@ public class Test extends HttpServlet {
         l.add("t3");
         l.add("t4");
 
-
-
         state++;
         System.out.println("State: " + state);
 

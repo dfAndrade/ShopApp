@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="jstl:jstl:1.1.1" />
           <element id="library" level="project" name="javax.servlet:jstl:1.2" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/postgresql-42.2.5.jar" />
         </element>
       </element>
     </root>

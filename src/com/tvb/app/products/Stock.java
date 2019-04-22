@@ -1,3 +1,7 @@
+package com.tvb.app.products;
+
+import com.tvb.app.products.Product;
+
 import java.util.ArrayList;
 
 public class Stock {

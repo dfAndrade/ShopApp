@@ -1,3 +1,4 @@
+package com.tvb.app.products;
 
 public class Clothing extends Product{
 	private String size;

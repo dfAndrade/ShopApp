@@ -1,5 +1,7 @@
 package com.tvb.app.db;
 
+import com.tvb.app.AppUtils;
+
 import java.sql.*;
 import java.util.HashMap;
 import java.util.TreeMap;
@@ -12,8 +14,8 @@ public class DBInteraction {
     private static final String DB_USER = "postgres";
     private static final String DB_PWD = "postgres";
 
-    /** This is a generic method for the select operation */
-    public TreeMap<String, HashMap<String,String>> select(String selectQuery) {
+    /** This is a generic method for the query operation */
+    public static TreeMap<String, HashMap<String,String>> query(String selectQuery) {
 
         Connection conn = connect();
 
@@ -49,7 +51,27 @@ public class DBInteraction {
         return selectResult;
     }
 
-    public int update(String updateQuery) {
+
+    public static ResultSet select(String[] keys, String from, String where) {
+        Connection conn = connect();
+
+        if (conn == null || from == null || from.isEmpty()) return null;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(
+                    "SELECT"
+                    + String.join(", ", keys)
+                    + "FROM" + from
+                    + (where != null ? "WHERE" + where : null));
+            return stmt.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static int update(String updateQuery) {
         Connection conn = connect();
 
         if (conn == null) return -1;
@@ -68,8 +90,27 @@ public class DBInteraction {
         }
     }
 
+    public static boolean insert(String tableName, String[] params) {
+        Connection conn = connect();
 
-    private Connection connect() {
+        if (conn == null) return false;
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO " + tableName + " VALUES (NULL, " + AppUtils.repeat("?", params.length, ", ") + ")");
+            for (int i = 0; i < params.length; i++) {
+                stmt.setString(i, params[i]);
+            }
+
+            return stmt.executeUpdate() == 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
+    private static Connection connect() {
         try {
             Class.forName(DBInteraction.DB_DRIVER);
             return DriverManager.getConnection(DBInteraction.DB_URL, DBInteraction.DB_USER, DBInteraction.DB_PWD);
@@ -78,4 +119,6 @@ public class DBInteraction {
         }
         return null;
     }
+
+
 }

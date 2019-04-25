@@ -1,12 +1,11 @@
-package com.tvb.app.db;
+package com.tvb.app.db.dao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import com.tvb.app.db.DBInteraction;
+
 import java.util.HashMap;
 import java.util.TreeMap;
 
-public class UserDAO {
-    private DBInteraction db = new DBInteraction();
+public class UserDao  {
 
     /** This method is specific for USERS data */
     public TreeMap<String, HashMap<String,String>> getUsers(String namePattern) {
@@ -16,12 +15,11 @@ public class UserDAO {
                         "WHERE lastName like '%" + namePattern + "%'";
 
         try {
-            users = db.select(selectUsers);
+            users = DBInteraction.query(selectUsers);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         return users;
-    } // getUsers()
-
-} // class MyDB
+    }
+}

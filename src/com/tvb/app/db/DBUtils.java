@@ -1,4 +1,4 @@
-package com.tvb.app.db.dao;
+package com.tvb.app.db;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -33,6 +33,7 @@ public class DBUtils {
     }
 
     public static Map<String, String> resultSetGet1(ResultSet rs) {
+        if (rs == null) return null;
         HashMap<String, String> row = null;
         try {
             ResultSetMetaData md = rs.getMetaData();
@@ -46,7 +47,6 @@ public class DBUtils {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return row;
     }
 }

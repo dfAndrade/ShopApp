@@ -14,11 +14,12 @@ public class ProductDao implements Dao<Product> {
 
     public static final String[] KEYS = new String[]{
             "ID",
-            "NAME"
+            "LABEL",
+            "TYPE"
             //TODO COMPLETE THIS
     };
 
-    private static final String TABLE_NAME = "table";
+    private static final String TABLE_NAME = "prods";
 
     @Override
     public Optional<Product> get(long id) {
@@ -37,8 +38,6 @@ public class ProductDao implements Dao<Product> {
 
     @Override
     public List<Product> getAll() {
-
-        List<Product> res = null;
 
         // Get mambo from db
         ResultSet rs = DBInteraction.select(KEYS, TABLE_NAME, null);

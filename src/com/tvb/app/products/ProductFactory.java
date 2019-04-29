@@ -17,6 +17,7 @@ public class ProductFactory {
 
     public static Product buildProduct(Map<String, String> params) {
         Product p = null;
+        if (params.get("type") == null) return null;
         ProductType type = ProductType.valueOf(params.get("type"));
 
         switch (type) {

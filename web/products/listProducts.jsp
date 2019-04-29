@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: diogo
   Date: 21/04/2019
@@ -17,7 +17,7 @@
     <c:forEach var="p" items="${products}">
         <tr>
             <td><c:out value="${p.toL}"/></td>
-            <td><c:out value="${customer.firstName}"/></td>
+            <td><c:out value="${p.firstName}"/></td>
         </tr>
     </c:forEach>
 </table>

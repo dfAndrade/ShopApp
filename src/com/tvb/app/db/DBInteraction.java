@@ -56,12 +56,15 @@ public final class DBInteraction {
 
         if (conn == null || from == null || from.isEmpty()) return null;
 
+        String query = "SELECT "
+                + ((keys != null) ? String.join(", ", keys) : "*")
+                + " FROM " + from
+                + (where != null ? " WHERE " + where : "");
+
+        System.out.println(query);
+
         try {
-            PreparedStatement stmt = conn.prepareStatement(
-                    "SELECT "
-                            + ((keys != null) ? String.join(", ", keys) : "*")
-                            + " FROM " + from
-                            + (where != null ? " WHERE " + where : ""));
+            PreparedStatement stmt = conn.prepareStatement(query);
             return stmt.executeQuery();
 
         } catch (SQLException e) {

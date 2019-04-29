@@ -1,14 +1,12 @@
 package com.tvb.app.servlets;
 
-import javax.servlet.RequestDispatcher;
+import com.tvb.app.db.dao.ProductDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Test extends HttpServlet {
     public static String test() {
@@ -19,19 +17,14 @@ public class Test extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        PrintWriter writer = res.getWriter();
-        writer.println("I wrote this");
 
-        List<String> l = new ArrayList<>();
-        l.add("t1");
-        l.add("t2");
-        l.add("t3");
-        l.add("t4");
+        ProductDao pd = new ProductDao();
+        req.setAttribute("test", pd.getAll());
 
-        state++;
-        System.out.println("State: " + state);
+        req.getRequestDispatcher("header.jsp").include(req, res);
 
-        req.setAttribute("test", l);
-        req.getRequestDispatcher("index.jsp").include(req, res);
+        req.getRequestDispatcher("products/listProducts.jsp").include(req, res);
+
+        req.getRequestDispatcher("footer.jsp").include(req, res);
     }
 }
